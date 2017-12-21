@@ -1,0 +1,5 @@
+This debugger and console screenshot is showing the steps for a user-defined function, mine, which is defined as follows:
+: mine over + ; 
+
+I also included a console screenshot. I found the console extremely useful when debugging/trying to solve problems; console.log() was a great 
+way for me to see what was happening in the stack (as you can see from the screenshot, I console.logged my key:value, and also the elements in the stack
