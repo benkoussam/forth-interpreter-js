@@ -1,4 +1,5 @@
-// Things that aren't working with ostack: .s, empty/reset functions...
+// Things that aren't working with ostack: .s
+//      * .s isn't working because it doesn't render the stack each time...
 
 // Defined stack class
 function Stack(){
@@ -56,7 +57,8 @@ ObservableStack.prototype.pop = function(){
 
 // Empty stack
 function emptyStack(stack){
-    while(stack.length > 0){
+    //while(stack.length > 0){      // can't use stack.length anymore...
+    for(var i =0; i <= Object.keys(stack).length; i++){
         stack.pop();
     }
 }
@@ -254,7 +256,15 @@ function process(stack, input, terminal) {
             stack.push(Number(inputstring[i]));
         } 
         else if(inputstring[i] === ".s"){
-            print(terminal, " <" + stack.length + "> " + stack.slice().join(" "));
+            // Had to edit this b/c the original stack.length and stack.slice.join aren't valid methods for my defined stack obj
+            var mylength = Object.keys(stack).length;
+            var stacktot = [];
+            for(var j = 0; j<= mylength; j++){
+                stacktot.push(Object.keys(stack));
+            }
+            print(terminal, "<" + mylength + ">"); //+ stacktot);
+            //print(terminal, " <" + stack.length + "> " + stack.slice().join(" ")); (original)
+            //print(terminal, "<" + stack + ">"); --> this prints out [object Object]
         }
         else if(inputstring[i] in words){
             words[inputstring[i]](stack);
