@@ -1,0 +1,16 @@
+Discussion Questions:
+
+* What was the most challenging part of this lab?
+    * The most challenging part of this lab was when implementing functions (such as observer, etc), applying them so that they were fully integrated with the rest of the code. Also, although extremely basic, the circle/canvas portion of the project involved a bit more research, as did the observer functions and the subclassing.
+* What did you enjoy most about JavaScript?
+    * Redoing this lab in JavaScript gave me a new perspective on the concepts we learned in class throughout the semester, and it was satisfying to know that I have no written forth interpreters in C++, Racket, HERA, and now JS. It is interesting to compare and contrast the styles and approaches I took based on the language I was using.
+* What did you least enjoy about JavaScript?
+    * Lack of types. I had to console.log a lot of things to figure out their types, properties, methods, etc. As mentioned in the Lab 7 discussion.txt, I personally prefer typed languages.
+* Do you think you would choose JavaScript over other languages for this task? What other language would you have chosen to implement the interpreter in, and why?
+    * Despite what I said about types, I actually preferred writing the js code out of all of all that we have done (C++, Racket, HERA). The code was very concise, and although lack of types was a pain in terms of debugging, it did make things easier and less complex in a sense.
+* Did the lack of type safety hurt you on this lab? Were there any points at which you got tripped up by not having types?
+    * Yes, but this was a quick fix - console.logging everything really helped. This was especially important in my stack implementation as an object - many array methods didn’t apply to an object, so it was important to understand the type being used in order to figure out how to manipulate the other functions and methods to work with that particular stack representation.
+* Were any of the concepts used in class helpful to you completing this project, even though this lab is in JavaScript (vs Racket / C++)?
+    * Yes. Because js has both functional and OO qualities, the concepts we learned in class about these types of languages were very helpful. I personally think that js was the “best of both worlds” of functional Racket and OO C++.
+* If you could add one feature to this application, but don't have time / know-how to do so, what would it be? What concepts from the class do you envision could help get you there?
+    * I would probably further implement the aspects of Forth - if/else/endif and begin/while/repeat - using recursion and function calls, though I’m sure this would be harder with the stack object {} representation as opposed to the list/arry []. Recursion and/or looping and function calls would be important to implement as a part of this, as would be dynamic storage (for example, I used a vector to store if/else/while statements because it was dynamically allocated, and this proved easier than using a standard list). I would also implement all of the basic forth functions (dup, etc).
