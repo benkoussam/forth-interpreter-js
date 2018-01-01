@@ -1,3 +1,6 @@
+// Things that aren't working with ostack: .s
+//      * .s isn't working because it doesn't render the stack each time...
+
 // Defined stack class
 function Stack(){
     this.size = 0;      // initializing size to 0
@@ -54,7 +57,8 @@ ObservableStack.prototype.pop = function(){
 
 // Empty stack
 function emptyStack(stack){
-    while(stack.length > 0){
+    //while(stack.length > 0){      // can't use stack.length anymore...
+    for(var i =0; i <= Object.keys(stack).length; i++){
         stack.pop();
     }
 }
@@ -85,6 +89,30 @@ words[">"] = greater;
 words["nip"] = nip;
 words["swap"] = swap;
 words["over"] = over;
+
+words["circle"] = circle;
+
+// Circle function - part 12 of the final project
+// Similar to the stack functions, arithmetic, etc, tbe circle function consumes 3 elements 
+// from the stack, and uses them to create a circle - they are the radius and (x,y) coordinates,
+// respectively. (ie radius xpos ypos followed by the keyword circle)
+// Resources:
+// https://www.w3schools.com/tags/canvas_arc.asp
+// https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+function circle(stack){
+    var canvas = document.getElementById('circle');     // getting the circle canvas from html
+    var display = canvas.getContext('2d');              // allowing for display of 2D canvas
+    var y = stack.pop();
+    var x = stack.pop();
+    var radius = stack.pop();                           // must be done in 'reverse' order for obvious reasons
+    display.canvas.height = Math.max(y,x,radius)*2;
+    display.canvas.width = Math.max(y,x,radius)*2;
+    display.beginPath();
+    display.arc(x,y,radius,0,2 * Math.PI, false);
+    display.lineWidth = 1;
+    display.strokeStyle = '#000000'                     // creating a black circle
+    display.stroke();                                   // actually making the circle; stroking path outline
+}
 
 // Stack functions: ., +, -, *, /, =, <, >, nip, swap, over
 function popp(stack){
@@ -228,7 +256,15 @@ function process(stack, input, terminal) {
             stack.push(Number(inputstring[i]));
         } 
         else if(inputstring[i] === ".s"){
-            print(terminal, " <" + stack.length + "> " + stack.slice().join(" "));
+            // Had to edit this b/c the original stack.length and stack.slice.join aren't valid methods for my defined stack obj
+            var mylength = Object.keys(stack).length;
+            var stacktot = [];
+            for(var j = 0; j<= mylength; j++){
+                stacktot.push(Object.keys(stack));
+            }
+            print(terminal, "<" + mylength + ">"); //+ stacktot);
+            //print(terminal, " <" + stack.length + "> " + stack.slice().join(" ")); (original)
+            //print(terminal, "<" + stack + ">"); --> this prints out [object Object]
         }
         else if(inputstring[i] in words){
             words[inputstring[i]](stack);
@@ -286,5 +322,14 @@ $(document).ready(function() {
     });
 
 });
+
+
+
+
+
+
+
+
+
 
 
